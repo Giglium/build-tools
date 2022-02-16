@@ -16,7 +16,7 @@ endif
 
 # set the project name if not defined
 ifeq ($(origin PROJECT_NAME), undefined)
-PROJECT_NAME := $(shell basename `git rev-parse --show-toplevel`)
+PROJECT_NAME := $(shell basename `git -C $(PROJECT_FOLDER) rev-parse --show-toplevel`)
 endif
 
 # set the project folder if not defined
@@ -46,12 +46,12 @@ endif
 # set the version number if not defined
 ifeq ($(origin VERSION), undefined)
 # check if there are any existing `git tag`
-ifeq ($(shell git tag),)
+ifeq ($(shell git -C $(PROJECT_FOLDER) tag),)
 # no tags found - default to initial tag `v0.0.0`
-VERSION := $(shell echo "0.0.0-$$(git rev-list HEAD --count)")
+VERSION := $(shell echo "0.0.0-$$(git -C $(PROJECT_FOLDER) rev-list HEAD --count)")
 else
 # use tags
-VERSION := $(shell git describe --dirty --always --tags )
+VERSION := $(shell git -C $(PROJECT_FOLDER) describe --dirty --always --tags )
 endif
 endif
 
@@ -108,8 +108,4 @@ help: ## Show the basic command help.
 help.all: ## Show the advanced command help.
 	@sed -ne '/@sed/!s/#! //p' $(MAKEFILE_LIST)
 
-.PHONY: submodules
-git.submodules: ## Update the submodules.
-	git submodule sync
-	git submodule update --recursive --remote
 

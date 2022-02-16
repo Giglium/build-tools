@@ -36,8 +36,8 @@ lint.hadolint: #! Run Hadolint as a static analysis tool to scan the Dockerfile.
 
 .PHONY: lint.checkmake
 lint.checkmake: #! Run Checkmake as a static analysis tool to scan the Makefile.
-	docker run -v $(MAKEFILE):/Makefile mrtazz/checkmake:latest
+	docker run --rm -v $(MAKEFILE):/Makefile mrtazz/checkmake:latest
 
 .PHONY: lint.clean
-lint.clean: #! Remove file generate by the linter
+lint.clean: #! Remove file generate by the linters.
 	rm super-linter.log || true
