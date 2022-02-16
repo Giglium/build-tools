@@ -26,7 +26,7 @@ An example of a minimal configuration is:
 # ====================================================================================
 # Setup Project
 
-include common.mk
+include ./build/common.mk
 
 # ====================================================================================
 # Actions
