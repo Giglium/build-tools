@@ -7,7 +7,7 @@
 # set the shell to bash always
 SHELL := /bin/bash
 
-ROOT := $(shell pwd)/
+ROOT := $(shell pwd)
 
 
 ifneq ($(origin GITHUB_WORKSPACE), undefined)
@@ -19,6 +19,11 @@ ifeq ($(origin PROJECT_FOLDER), undefined)
 PROJECT_FOLDER := $(ROOT)
 endif
 
+# set the project folder if not defined
+ifeq ($(origin BUILD_TOOLS_FOLDER), undefined)
+BUILD_TOOLS_FOLDER := $(ROOT)/build
+endif
+
 # set the project name if not defined
 ifeq ($(origin PROJECT_NAME), undefined)
 PROJECT_NAME := $(shell basename `git -C $(PROJECT_FOLDER) rev-parse --show-toplevel`)
@@ -27,12 +32,12 @@ endif
 # set the documentation folder if not defined
 ifeq ($(origin DOC_FOLDER), undefined)
 # check if there are any existing `git tag`
-DOC_FOLDER := $(ROOT)docs
+DOC_FOLDER := $(ROOT)/docs
 endif
 
 # set the test folder if not defined
 ifeq ($(origin TEST_FOLDER), undefined)
-TEST_FOLDER := $(ROOT)tests
+TEST_FOLDER := $(ROOT)/tests
 endif
 
 # set the project technology if not defined

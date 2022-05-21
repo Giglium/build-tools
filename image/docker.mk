@@ -2,7 +2,7 @@
 # Setup Project
 
 ifeq ($(origin DOCKERFILE), undefined)
-DOCKERFILE := $(ROOT)Dockerfile
+DOCKERFILE := $(ROOT)/Dockerfile
 endif
 
 ifeq ($(origin VOLUMES), undefined)
@@ -24,11 +24,9 @@ img.build: #! Build the application container.
 img.test.build: #! Build the unit test container.
 	export DOCKER_BUILDKIT=1
 	docker build --no-cache -t test-base-image:tmp -f $(DOCKERFILE) .
-	cp $(ROOT)build/$(TECHNOLOGY)/Dockerfile $(ROOT)test-Dockerfile
-	cp $(ROOT)build/$(TECHNOLOGY)/.dockerignore $(ROOT)test-Dockerfile.dockerignore
-	docker build --no-cache -t $(PROJECT_NAME)-test-image:tmp -f $(ROOT)test-Dockerfile .
-	rm $(ROOT)test-Dockerfile
-	rm $(ROOT)test-Dockerfile.dockerignore
+	cp $(BUILD_TOOLS_FOLDER)/$(TECHNOLOGY)/test/Dockerfile $(ROOT)/test.Dockerfile
+	docker build --no-cache -t $(PROJECT_NAME)-test-image:tmp -f $(ROOT)/test.Dockerfile .
+	rm $(ROOT)/test.Dockerfile
 
 .PHONY: img.run
 img.run: #! Run the main program inside a container
