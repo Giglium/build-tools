@@ -14,14 +14,14 @@ ifneq ($(origin GITHUB_WORKSPACE), undefined)
 ROOT := $(GITHUB_WORKSPACE)
 endif
 
-# set the project name if not defined
-ifeq ($(origin PROJECT_NAME), undefined)
-PROJECT_NAME := $(shell basename `git -C $(PROJECT_FOLDER) rev-parse --show-toplevel`)
-endif
-
 # set the project folder if not defined
 ifeq ($(origin PROJECT_FOLDER), undefined)
 PROJECT_FOLDER := $(ROOT)
+endif
+
+# set the project name if not defined
+ifeq ($(origin PROJECT_NAME), undefined)
+PROJECT_NAME := $(shell basename `git -C $(PROJECT_FOLDER) rev-parse --show-toplevel`)
 endif
 
 # set the documentation folder if not defined

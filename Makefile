@@ -10,7 +10,7 @@ include linter/linter.mk
 all: test clean
 
 .PHONY: test
-test: lint.checkmake lint.superlinter
+test: lint
 
 .PHONY: lint
 lint: lint.checkmake lint.superlinter
