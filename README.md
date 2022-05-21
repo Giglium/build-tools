@@ -1,6 +1,6 @@
 # Build
 
-This project contains common build scripts that are used by my project. The idea is to reduce the Makefile copy-paste from one project to another, standardize all the codebase and speed the development of a new project.
+This project contains common build scripts that are used by my projects. The idea is to reduce the Makefile copy-paste from one project to another, standardize all the codebase and speed the development of a new project.
 
 > In the future, I would like to put more logic in these makefiles to implement more versatility and some more check, for now, they are a little.
 
@@ -45,7 +45,7 @@ After that, you can include all the `*.mk` files to enable the out-of-the-box co
 
 ## Version
 
-For now, is impossible to use a tag on submodules. For this reason, I will create a branch with a pattern like `v0.0.1` every time I introduce breaking change. This branch will not be maintained but they will give enough time to migrate to the `main` version. So get a look every time you update the submodules!
+For now, is impossible to use a tag on submodules. For this reason, I will create a branch with a pattern like `v0.0.1` every time I introduce breaking change. This branch will not be maintained but they will give you enough time to migrate to the `main` version. So get a look every time you update the submodules!
 
 ## License
 
