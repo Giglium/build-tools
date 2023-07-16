@@ -4,7 +4,7 @@ FROM base_image AS builder
 
 WORKDIR /tmp
 
-COPY ../../src/requirements.txt .
+COPY ./requirements.txt .
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG DEBCONF_NOWARNINGS="yes"
@@ -25,6 +25,6 @@ RUN useradd -ms /bin/bash app
 USER app
 
 COPY --from=builder /home/installer/.local /home/app/.local
-COPY ../../src/src /usr/src/app/src
+COPY ./src /usr/src/app/src
 
 WORKDIR /usr/src/app
