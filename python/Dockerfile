@@ -1,13 +1,30 @@
-FROM test-base-image:tmp AS base_image
+FROM python:3.10.12-slim AS base_image
+
+FROM base_image AS builder
+
+WORKDIR /tmp
+
+COPY ../../src/requirements.txt .
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG DEBCONF_NOWARNINGS="yes"
+
+RUN useradd -ms /bin/bash installer
+
+USER installer
+RUN python3 -m pip install --user --no-warn-script-location --no-cache-dir --disable-pip-version-check -r requirements.txt
 
 FROM base_image AS release
 
-ENV PATH /root/.local/bin:$PATH
+ENV PATH /home/app/.local/bin:$PATH
 
 ENTRYPOINT ["python3"]
-CMD ["-m", "unittest", "discover"]
+CMD ["-m", "src.main"]
 
-COPY --from=base_image /root/.local /root/.local
+RUN useradd -ms /bin/bash app
+USER app
 
-WORKDIR /tmp/test
+COPY --from=builder /home/installer/.local /home/app/.local
+COPY ../../src/src /usr/src/app/src
 
+WORKDIR /usr/src/app

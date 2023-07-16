@@ -43,3 +43,10 @@ git.status: ## Exec git status command inside the project folder.
 git.submodules: ## Update the submodules.
 	git -C $(PROJECT_FOLDER) submodule sync
 	git -C $(PROJECT_FOLDER) submodule update --recursive --remote
+
+.PHONY:
+git.hooks.setup:
+	@for file in $(BUILD_TOOLS_FOLDER)/$(TECHNOLOGY)/hooks/*; do \
+        cp "$$file" "$(ROOT)/.git/hooks/$$(basename "$${file%.*}")"; \
+        chmod +x "$(ROOT)/.git/hooks/$$(basename "$${file%.*}")"; \
+    done
