@@ -20,8 +20,6 @@ jobs:
           title: "[Reminder] Update project dependency"
           body: |
             # Update project dependency
-            > “This is a new year. A new beginning. And things will change.”
-            > ―  <cite>Taylor Swift</cite>
             
             So, it's time to check and update all dependency in the project.
           pinned: false
