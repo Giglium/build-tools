@@ -38,7 +38,7 @@ img.test.run: #! Run all the unit test inside a container.
 
 .PHONY: img.clean
 img.clean: #! Clean up img from the created image
-	docker rmi $$(img images -f dangling=true -q) || true
+	docker rmi $$(docker images -f dangling=true -q) || true
 	docker image rm -f $(PROJECT_NAME):$(VERSION) || true
 
 .PHONY: img.test.clean
