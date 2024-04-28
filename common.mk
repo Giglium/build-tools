@@ -1,7 +1,7 @@
 # ====================================================================================
 # Setup Project
 
-# remove default suffixes as we dont use them
+# remove default suffixes as we don't use them
 .SUFFIXES:
 
 # set the shell to bash always
@@ -43,6 +43,15 @@ endif
 # set the project technology if not defined
 ifeq ($(origin TECHNOLOGY), undefined)
 TECHNOLOGY := shell
+endif
+
+# Detect the OS
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	OS := linux
+endif
+ifeq ($(UNAME_S),Darwin)
+	OS := macos
 endif
 
 # ====================================================================================
