@@ -27,4 +27,5 @@ USER app
 COPY --from=builder /home/installer/.local /home/app/.local
 COPY ./src /usr/src/app/src
 
+#checkov:skip=CKV_DOCKER_2: It is not possible to define a generic health check
 WORKDIR /usr/src/app
