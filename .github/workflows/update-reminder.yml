@@ -22,7 +22,7 @@ jobs:
           title: "[Reminder] Update project dependency"
           body: |
             # Update project dependency
-            
+
             So, it's time to check and update all dependency in the project.
           pinned: false
           close-previous: false

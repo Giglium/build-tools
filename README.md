@@ -1,14 +1,14 @@
 # Build Tools
 
 This project contains common make build scripts that are used by my projects. The idea is to reduce the Makefile
-copy-paste from one project to another, standardize the codebase, and speed the development of a new project.
+copypaste from one project to another, standardize the codebase, and speed the development of a new project.
 
 > In the future, I would like to put more logic in these makefiles to implement more versatility and some more check,
 > for now, they are a little rough.
 
 ## Prerequisites
 
-* [make](https://www.gnu.org/software/make/).
+- [make](https://www.gnu.org/software/make/).
 
 > Other prerequisites can be found under each folder, check the `README.md` before `include` them. For
 > sure [Docker](https://www.docker.com/) is a must since I will use containers every time I can.

@@ -23,9 +23,9 @@ jobs:
           fetch-depth: 0
 
       - name: Lint Code Base
-        uses: github/super-linter@v6
+        uses: github/super-linter@v7.0.0
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
-          FILTER_REGEX_EXCLUDE: ./docs
+          IGNORE_GITIGNORED_FILES: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
