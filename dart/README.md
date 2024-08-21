@@ -54,4 +54,3 @@ Then you can initialize the project by executing the following command:
 ```shell
     make init
 ```
-
