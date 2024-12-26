@@ -1,10 +1,10 @@
-# Build - Javascript
+# Build - JavaScript
 
-A collection of useful [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) make command.
+A collection of useful [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) make command.
 
 ## Prerequisites
 
-- [Javascript ES6](https://www.w3schools.com/Js/js_versions.asp).
+- [ECMAScript 2015](https://www.w3schools.com/Js/js_versions.asp).
 
 ### Install
 
