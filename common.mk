@@ -9,7 +9,6 @@ SHELL := /bin/bash
 
 ROOT := $(shell pwd)
 
-
 ifneq ($(origin GITHUB_WORKSPACE), undefined)
 ROOT := $(GITHUB_WORKSPACE)
 endif
@@ -21,7 +20,7 @@ endif
 
 # set the project folder if not defined
 ifeq ($(origin BUILD_TOOLS_FOLDER), undefined)
-BUILD_TOOLS_FOLDER := $(ROOT)/build
+BUILD_TOOLS_FOLDER := $(ROOT)/build-tools
 endif
 
 # set the project name if not defined
