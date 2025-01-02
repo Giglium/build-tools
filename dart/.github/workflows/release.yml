@@ -40,7 +40,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ github.workspace }}/build/app/outputs/flutter-apk/app-release.apk # yamllint disable-line rule:line-length
-          asset_name: ${{ steps.pubspec.outputs['name'] }}-${{ steps.pubspec.outputs['version'] }}.apk # yamllint disable-line rule:line-length
+          file: ${{ github.workspace }}/build/app/outputs/flutter-apk/app-release.apk
+          asset_name: ${{ steps.pubspec.outputs['name'] }}-${{ steps.pubspec.outputs['version'] }}.apk
           tag: ${{ github.ref }}
           overwrite: true
