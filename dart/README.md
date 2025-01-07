@@ -6,8 +6,8 @@ Optionally, you can also set up [Firebase](https://firebase.google.com/).
 
 ## Prerequisites
 
-- [Dart 3.3.4](https://dart.dev/);
-- (Optional) [Flutter 3.19.6](https://flutter.dev/);
+- [Dart 3.5.4](https://dart.dev/);
+- (Optional) [Flutter 3.24.4](https://flutter.dev/);
 - (Optional) [Firebase](https://firebase.google.com/);
 
 ### Install
