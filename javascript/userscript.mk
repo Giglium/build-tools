@@ -10,19 +10,23 @@ userscript.init: ## Initialize a new userscript project
 
 .PHONY: userscript.build
 userscript.build: ## build the user script
-	@if [ -n $(REPOSITORY) ]; then \
-		find . -name "meta.json" -exec sh -c ' \
-			file_path=$$(echo $$1 | sed "s/^\.\//\//g" | sed "s/src/dist/g"); \
-			script_name=$$(echo $$1 | sed "s|./src/\(.*\)/meta\.json|\1|"); \
-			jq --arg version "$(VERSION)" \
-				--arg repository "$(REPOSITORY)" \
-				--arg filepath "$$file_path" \
-				--arg script_name "$$script_name" \
-				".updateURL = \$$repository + \"/raw/refs/tags/\" + \$$version + \$$filepath | \
-				.downloadURL = \$$repository + \"/releases/download/\" + \$$version + \"/\" + \$$script_name + \".user.js\"" "$$1" > temp.json && mv temp.json "$$1" \
-		' _ {} \; ; \
-	fi
-	
+
+	@find . -name "meta.json" -exec sh -c ' \
+		file_path=$$(echo $$1 | sed "s/^\.\//\//g" | sed "s/src/dist/g"); \
+		script_name=$$(echo $$1 | sed "s|./src/\(.*\)/meta\.json|\1|");  \
+		if [ -n "$(UPDATE_URL)" ]; then \
+			update_url="$(UPDATE_URL)/meta/$${script_name}.meta.js"; \
+			download_url="$(UPDATE_URL)/$(VERSION)/$${script_name}.user.js"; \
+		else \
+			update_url="$(REPOSITORY)/raw/refs/tags/$(VERSION)$${file_path}"; \
+			download_url="$(REPOSITORY)/releases/download/$(VERSION)/$${script_name}.user.js"; \
+		fi;  \
+		jq --arg version "$(VERSION)" \
+			--arg update_url "$$update_url" \
+			--arg download_url "$$download_url" \
+			".updateURL = \$$update_url | .downloadURL = \$$download_url" "$$1" > temp.json && mv temp.json "$$1" \
+	' _ {} \;
+
 	@find . -name "meta.json" -exec sh -c ' \
 		jq --arg version "$(VERSION)" \
 		".version = \$$version" "$$1" > temp.json && mv temp.json "$$1" \
@@ -32,4 +36,4 @@ userscript.build: ## build the user script
 
 .PHONY: userscript.dev
 userscript.dev: ## build the development user script
-	@webpack serve --mode development
+	@./node_modules/.bin/webpack serve --mode development
