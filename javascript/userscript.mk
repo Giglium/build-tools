@@ -15,11 +15,11 @@ userscript.build: ## build the user script
 		file_path=$$(echo $$1 | sed "s/^\.\//\//g" | sed "s/src/dist/g"); \
 		script_name=$$(echo $$1 | sed "s|./src/\(.*\)/meta\.json|\1|");  \
 		if [ -n "$(UPDATE_URL)" ]; then \
-			update_url="$(UPDATE_URL)/meta/$${script_name}.meta.js"; \
-			download_url="$(UPDATE_URL)/$(VERSION)/$${script_name}.user.js"; \
+			update_url="$(UPDATE_URL)/$${script_name}.meta.js"; \
+			download_url="$(UPDATE_URL)/$${script_name}.user.js"; \
 		else \
-			update_url="$(REPOSITORY)/raw/refs/tags/$(VERSION)$${file_path}"; \
-			download_url="$(REPOSITORY)/releases/download/$(VERSION)/$${script_name}.user.js"; \
+			update_url="$(REPOSITORY)/raw/refs/heads/main/dist/$${file_path}"; \
+			download_url="$(REPOSITORY)/raw/refs/heads/main/dist/$${script_name}.user.js"; \
 		fi;  \
 		jq --arg version "$(VERSION)" \
 			--arg update_url "$$update_url" \
