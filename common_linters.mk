@@ -6,7 +6,7 @@ FILTER_REGEX_EXCLUDE := (?!.*)
 endif
 
 ifeq ($(origin SUPER_LINTER_FMT), undefined)
-SUPER_LINTER_FMT := -e FIX_MARKDOWN=true -e FIX_JSON=true -e FIX_YAML_PRETTIER=true
+SUPER_LINTER_FMT := -e FIX_MARKDOWN=true -e FIX_MARKDOWN_PRETTIER=true -e FIX_JSON=true -e FIX_JSON_PRETTIER=true -e FIX_YAML_PRETTIER=true
 endif
 
 ifeq ($(origin DOCKERFILE), undefined)
@@ -36,7 +36,7 @@ endif
 # Actions
 .PHONY: linter.superlinter
 lint.superlinter: #! Run Super Linter as a static analysis tool to scan the codebase.
-	docker run --rm --name=$(PROJECT_NAME)-$(VERSION)-scanner -e SHELL=/bin/bash -e IGNORE_GITIGNORED_FILES=true -e RUN_LOCAL=$(RUN_LOCAL) -e DEFAULT_BRANCH=$(DEFAULT_BRANCH) -e FILTER_REGEX_EXCLUDE="$(FILTER_REGEX_EXCLUDE)" $(SUPER_LINTER_FMT) --mount type=bind,src=$(ROOT),dst=/tmp/lint/ --mount type=volume,dst=/tmp/lint/$(shell basename $(BUILD_TOOLS_FOLDER)) ghcr.io/super-linter/super-linter:v7.2.1
+	docker run --rm --name=$(PROJECT_NAME)-$(VERSION)-scanner -e SHELL=/bin/bash -e IGNORE_GITIGNORED_FILES=true -e RUN_LOCAL=$(RUN_LOCAL) -e DEFAULT_BRANCH=$(DEFAULT_BRANCH) -e FILTER_REGEX_EXCLUDE="$(FILTER_REGEX_EXCLUDE)" $(SUPER_LINTER_FMT) --mount type=bind,src=$(ROOT),dst=/tmp/lint/ --mount type=volume,dst=/tmp/lint/$(shell basename $(BUILD_TOOLS_FOLDER)) ghcr.io/super-linter/super-linter:v7.3.0
 
 .PHONY: lint.hadolint
 lint.hadolint: #! Run Hadolint as a static analysis tool to scan the Dockerfile.
